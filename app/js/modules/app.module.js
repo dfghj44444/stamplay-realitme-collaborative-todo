@@ -12,3 +12,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 })
+
+app.run(function() {
+  Stamplay.init("YOUR STAMPLAY APP ID")
+  Pubnub.init({
+    publish_key : "PUBNUB PUBLISH KEY",
+    subscribe_key : "PUBNUB SUBSCRIBE KEY"
+  })
+})
