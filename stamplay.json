@@ -1,0 +1,10 @@
+{
+  "appId": "shop-with-me",
+  "apiKey": "2580a8b62e73f528fc1debd50cf7c451779f182812efa2f63a77c5806c495378",
+  "public": "./app",
+  "ignore": [
+    "stamplay.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
