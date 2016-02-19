@@ -35,3 +35,11 @@
 .input-active {
   background:#fff url('http://livetyping.com/1655925.gif') no-repeat 3px;
 }
+
+a[ui-sref-active].active {
+  background-color:#f2f2f2;
+}
+
+.header-item:last-child, .header-item:first-child {
+    padding: 10px !important;
+  }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="shop-with-me">
   <head>
-    <base href="/">
+    <!-- <base href="/"> -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shop With Me</title>
@@ -10,17 +10,16 @@
     <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
-
     <header class="header">
       <div class="container">
         <div class="header-left">
-          <a class="header-item" ui-sref="Home">
+          <a class="header-item" ui-sref="Home" ui-sref-active="active">
             <i class="ion-bag"></i> &nbsp;Shop With Me
           </a>
         </div>
         <div class="header-right flex" ng-hide="user">
-          <a class="header-item" ui-sref="Account">Login</a>
-          <a class="header-item" ui-sref="Account">Signup</a>
+          <a class="header-item" ui-sref="Account({ tab : 'login' })" ui-sref-active="active">Login</a>
+          <a class="header-item" ui-sref="Account({ tab : 'signup' })" ui-sref-active="active">Signup</a>
         </div>
         <div class="header-right flex" ng-show="user" ng-controller="AccountController">
           <a class="header-item" ng-bind="user.email"></a>

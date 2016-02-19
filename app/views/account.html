@@ -15,16 +15,16 @@
   <div class="tabs is-fullwidth is-boxed">
     <ul>
       <li ng-class="{ 'is-active' : tab === 'login'}">
-        <a ng-click="tab = 'login'">Login</a>
+        <a ui-sref="Account({ tab : 'login' })">Login</a>
       </li>
       <li ng-class="{ 'is-active' : tab === 'signup'}">
-        <a ng-click="tab = 'signup'">Signup</a>
+        <a ui-sref="Account({ tab : 'signup' })">Signup</a>
       </li>
     </ul>
   </div>
 </section>
 
-<section ng-show="tab === 'login'" ng-init="tab = 'login'" class="account-form">
+<section ng-show="tab === 'login'" class="account-form">
   <div class="column is-half">
     <form ng-submit="login()">
       <input class="input" type="email" placeholder="Email" ng-model="user.email">

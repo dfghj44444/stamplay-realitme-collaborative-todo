@@ -8,14 +8,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl : "../../views/home.html"
     })
     .state("Account", {
-        url : '/account',
+        url : '/account/:tab',
         templateUrl : "../../views/account.html",
         controller : "AccountController"
     })
 
   $urlRouterProvider.otherwise("/");
 
-  $locationProvider.html5Mode(true);
+  // $locationProvider.html5Mode(true);
 })
 
 app.run(function(Pubnub, User, $rootScope) {
