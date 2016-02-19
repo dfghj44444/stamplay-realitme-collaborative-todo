@@ -1,0 +1,45 @@
+<section class="hero">
+  <div class="hero-content">
+    <div class="container">
+      <h1 class="title">
+        <i class="ion-person"></i> Your Account
+      </h1>
+      <h2 class="subtitle">
+        Signup or login to your account
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="tabs is-fullwidth is-boxed">
+    <ul>
+      <li ng-class="{ 'is-active' : tab === 'login'}">
+        <a ng-click="tab = 'login'">Login</a>
+      </li>
+      <li ng-class="{ 'is-active' : tab === 'signup'}">
+        <a ng-click="tab = 'signup'">Signup</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section ng-show="tab === 'login'" ng-init="tab = 'login'" class="account-form">
+  <div class="column is-half">
+    <form ng-submit="login()">
+      <input class="input" type="email" placeholder="Email" ng-model="user.email">
+      <input class="input" type="password" placeholder="Password" ng-model="user.password">
+      <button class="button is-primary" type="submit">Login</button>
+    </form>
+  </div>
+</section>
+
+<section ng-show="tab === 'signup'" class="account-form">
+  <div class="column is-half">
+    <form ng-submit="signup()">
+      <input class="input" type="email" placeholder="Email" ng-model="user.email">
+      <input class="input" type="password" placeholder="Password" ng-model="user.password">
+      <button class="button is-primary" type="submit">Register</button>
+    </form>
+  </div>
+</section>

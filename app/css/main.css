@@ -1,0 +1,37 @@
+.account-form {
+  padding: 20px;
+  height: 50vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.input {
+  border:none;
+  outline:none;
+  margin: 20px 0;
+}
+
+.search {
+  margin:100px auto;
+  width:50%;
+  min-width: 300px;
+}
+
+.account-form button {
+  width: 100%;
+  border:none;
+}
+
+.account-form .is-half {
+  margin: 0 auto;
+  min-width: 300px !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.input-active {
+  background:#fff url('http://livetyping.com/1655925.gif') no-repeat 3px;
+}

@@ -7,15 +7,24 @@
     <title>Shop With Me</title>
     <link rel="stylesheet" href="https://cdn.rawgit.com/jgthms/bulma/master/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
 
     <header class="header">
       <div class="container">
         <div class="header-left">
-          <a class="header-item" href="/">
+          <a class="header-item" ui-sref="Home">
             <i class="ion-bag"></i> &nbsp;Shop With Me
           </a>
+        </div>
+        <div class="header-right flex" ng-hide="user">
+          <a class="header-item" ui-sref="Account">Login</a>
+          <a class="header-item" ui-sref="Account">Signup</a>
+        </div>
+        <div class="header-right flex" ng-show="user" ng-controller="AccountController">
+          <a class="header-item" ng-bind="user.email"></a>
+          <a class="header-item" ng-click="logout()">Logout</a>
         </div>
       </div>
     </header>
@@ -25,9 +34,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
     <script src="https://drrjhlchpvi7e.cloudfront.net/libs/stamplay-js-sdk/2.0.1/stamplay.min.js"></script>
+    <script src="https://cdn.rawgit.com/Stamplay/angular-stamplay/master/angular-stamplay.js"></script>
     <script src="https://cdn.pubnub.com/pubnub-3.9.2.min.js"></script>
     <script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.1.1.min.js"></script>
     <script src="/js/modules/app.module.js"></script>
+    <script src="/js/services/user.service.js"></script>
+    <script src="/js/controllers/account.controller.js"></script>
 
   </body>
 </html>
