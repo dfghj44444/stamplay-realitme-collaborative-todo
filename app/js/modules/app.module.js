@@ -1,4 +1,4 @@
-var app = angular.module("shop-with-me", ["ui.router", "pubnub.angular.service"])
+var app = angular.module("shop-with-me", ["ui.router", "pubnub.angular.service", "ngStamplay"])
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
@@ -13,7 +13,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 })
 
-app.run(function() {
+app.run(function(Pubnub) {
   Stamplay.init("YOUR STAMPLAY APP ID")
   Pubnub.init({
     publish_key : "PUBNUB PUBLISH KEY",
