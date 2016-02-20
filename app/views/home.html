@@ -11,6 +11,42 @@
   </div>
 </section>
 
-<section class="is-text-centered">
-  <input class="input search" placeholder="What is your shopping list ID?">
+<section class="hero is-primary main inset-shadow-1">
+  <div class="hero-content">
+    <div class="container">
+      <h1 class="title">
+        Don't have a shopping list?
+      </h1>
+      <h2 class="subtitle">
+        Add one now.
+      </h2>
+      <form ng-submit="createList()">
+        <div class="control" ng-class="{ 'is-loading' : searching }">
+          <input type="text" class="input" ng-model="list" ng-model-options="{ debounce: 1000 }" ng-change="checkName()" placeholder="Enter the name of your shopping list.." />
+          <input type="submit" class="hidden" ng-disabled="invalidName">
+        </div>
+      </form>
+      <div class="notification available"  ng-class="{ 'is-danger' : availability.status === 'unavailable', 'is-success' : availability.status === 'available', 'is-checking' : availability.status === 'checking', 'is-visible' : availability.status === false }">
+        {{ availability.message }}
+      </div>
+    </div>
+  </div>
 </section>
+
+<!-- <section class="hero main">
+<div class="hero-content">
+<div class="container">
+<h1 class="title">
+Already have a shopping list?
+</h1>
+<h2 class="subtitle">
+Enter your shopping list ID below.
+</h2>
+<div class="control">
+<input type="text"
+class="input search"
+placeholder="my-thanksgiving-list">
+</div>
+</div>
+</div>
+</section> -->

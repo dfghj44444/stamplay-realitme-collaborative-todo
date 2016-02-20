@@ -5,12 +5,17 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state("Home", {
         url : '/',
-        templateUrl : "../../views/home.html"
+        templateUrl : "../../views/home.html",
+        controller: "HomeController"
     })
     .state("Account", {
         url : '/account/:tab',
         templateUrl : "../../views/account.html",
         controller : "AccountController"
+    })
+    .state("List", {
+      url : "/list/:slug",
+      templateUrl : '../../views/list.html'
     })
 
   $urlRouterProvider.otherwise("/");

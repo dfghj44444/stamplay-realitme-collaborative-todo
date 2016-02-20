@@ -2,7 +2,9 @@ app.controller("AccountController",
   ["User", "$scope", "$rootScope", "$state", "$stateParams",
     function(User, $scope, $rootScope, $state, $stateParams) {
 
-  $scope.tab = $stateParams.tab === 'signup' ? 'signup' : 'login';
+  if($stateParams.tab) {
+    $scope.tab = $stateParams.tab === 'signup' ? 'signup' : 'login';
+  }
 
   var userStatus = function() {
     User.current()
