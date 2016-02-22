@@ -1,14 +1,22 @@
 app.controller("ListController",
-  ["List", "Item", "$scope", "$state", "$stateParams", "list", "items", "$stamplay", "Pubnub", "ngNotify",
-    function(List, Item, $scope, $state, $stateParams, list, items, $stamplay, Pubnub, ngNotify) {
+  ["List", "Item", "$scope", "$rootScope", "$state", "$stateParams", "list", "items", "$stamplay", "Pubnub", "ngNotify", "loggedin",
+    function(List, Item, $scope, $rootScope, $state, $stateParams, list, items, $stamplay, Pubnub, ngNotify, loggedin) {
+
+      var slug = $stateParams.slug;
+
+      // New
+      if(loggedin.user === false) {
+        $state.go("Account", { tab : "login", list : slug });
+        ngNotify.set("Please login to access this shopping list.")
+      }
 
       $scope.list = list;
       $scope.items = items;
-      var slug = $stateParams.slug;
 
       $scope.add = function(name) {
         Item.add(name, slug)
           .then(function(res) {
+            // New
             $scope.name = "";
           }, function(err) {
             console.error(err);
@@ -24,6 +32,7 @@ app.controller("ListController",
           })
       }
 
+      // New
       Pubnub.subscribe({
           channel  : slug,
           message  : function(msg) {
@@ -32,21 +41,29 @@ app.controller("ListController",
               $scope.items.push(msg.item);
               $scope.$apply();
 
+              if(msg.user._id !== loggedin.user._id) {
+                ngNotify.set(msg.user.email + " added the item, " + msg.item.name  + " to this shopping list.")
+              }
+
             } else {
-              
+
               var items_copy = angular.copy($scope.items);
               items_copy.find(function(item, index, array) {
+
                 if(item._id === msg.item._id) {
+
                   $scope.items[index].complete = msg.item.complete;
                   $scope.$apply();
 
+                  if(msg.user._id !== loggedin.user._id) {
+                    var user = msg.user.email;
+                    var action = msg.item.complete ? " checked off " : " unchecked ";
+                    ngNotify.set(user + " " + action + " " + items_copy[index].name + " " + " on the " + list.name + " shopping list.")
+                  }
 
-                  var user = msg.user._id ? msg.user.email : "An anonymous user";
-                  var action = msg.item.complete ? " checked off " : " unchecked ";
-
-                  ngNotify.set(user + " " + action + " " + items_copy[index].name + " " + " on the " + list.name + " shopping list.")
                   return;
                 }
+
               })
             }
           }

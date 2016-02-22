@@ -1,6 +1,6 @@
 app.controller("HomeController",
-  ["List", "$scope", "$state",
-    function(List, $scope, $state) {
+  ["List", "$scope", "$state", "loggedin",
+    function(List, $scope, $state, loggedin) {
 
   // set initial loading state to false, input form in to valid, and availability to false
   $scope.searching = false;
@@ -10,7 +10,9 @@ app.controller("HomeController",
   // Create a new list
   $scope.createList = function() {
 
-    $scope.availability.message = "Creating list..."
+    if(loggedin.user === false) {
+      return $scope.availability = { message : "Please login to create a shopping list." , status : 'unavailable' };
+    }
 
     List.createList($scope.list)
       .then(function(res) {

@@ -6,18 +6,28 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state("Home", {
         url : '/',
         templateUrl : "../../views/home.html",
-        controller: "HomeController"
+        controller: "HomeController",
+        resolve : {
+          loggedin : function(User) {
+            return User.current();
+          }
+        }
     })
     .state("Account", {
-        url : '/account/:tab',
+      // new param list
+        url : '/account/:tab?list',
         templateUrl : "../../views/account.html",
-        controller : "AccountController"
+        controller : "AccountController",
     })
     .state("List", {
       url : "/list/:slug",
       templateUrl : '../../views/list.html',
       controller : "ListController",
       resolve : {
+        // New
+        loggedin : function(User) {
+          return User.current();
+        },
         list : function(List, $stateParams) {
           return List.getList($stateParams.slug);
         },
@@ -49,6 +59,7 @@ app.run(function(Pubnub, User, $rootScope, ngNotify) {
       }
     )
 
+  //  New
   ngNotify.config({
     duration: 3000,
     type: 'info',

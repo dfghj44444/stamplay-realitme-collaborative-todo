@@ -1,6 +1,6 @@
 app.controller("AccountController",
-  ["User", "$scope", "$rootScope", "$state", "$stateParams",
-    function(User, $scope, $rootScope, $state, $stateParams) {
+  ["User", "$scope", "$rootScope", "$state", "$stateParams", "$location",
+    function(User, $scope, $rootScope, $state, $stateParams, $location) {
 
   if($stateParams.tab) {
     $scope.tab = $stateParams.tab === 'signup' ? 'signup' : 'login';
@@ -10,7 +10,11 @@ app.controller("AccountController",
     User.current()
       .then(function(response) {
           $rootScope.user = response.user;
-          $state.go("Home");
+          if($location.search().list) {
+            $state.go("List", { slug : $location.search().list });
+          } else {
+            $state.go("Home");
+          }
         })
   };
 

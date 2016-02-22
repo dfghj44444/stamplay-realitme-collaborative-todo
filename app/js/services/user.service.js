@@ -29,6 +29,7 @@ app.factory("User", ["$q", "$stamplay", function($q, $stamplay) {
       $stamplay.User.currentUser()
         .then(
           function(response) {
+            if(!response.hasOwnProperty("user")) response.user = false;
             deffered.resolve(response);
           }, function(error) {
             deffered.reject(error);
