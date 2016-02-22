@@ -1,6 +1,6 @@
 app.controller("ListController",
-  ["List", "Item", "$scope", "$state", "$stateParams", "list", "items", "$stamplay", "Pubnub",
-    function(List, Item, $scope, $state, $stateParams, list, items, $stamplay, Pubnub) {
+  ["List", "Item", "$scope", "$state", "$stateParams", "list", "items", "$stamplay", "Pubnub", "ngNotify",
+    function(List, Item, $scope, $state, $stateParams, list, items, $stamplay, Pubnub, ngNotify) {
 
       $scope.list = list;
       $scope.items = items;
@@ -28,14 +28,23 @@ app.controller("ListController",
           channel  : slug,
           message  : function(msg) {
             if(msg.item.new) {
+
               $scope.items.push(msg.item);
               $scope.$apply();
+
             } else {
+              
               var items_copy = angular.copy($scope.items);
               items_copy.find(function(item, index, array) {
                 if(item._id === msg.item._id) {
                   $scope.items[index].complete = msg.item.complete;
                   $scope.$apply();
+
+
+                  var user = msg.user._id ? msg.user.email : "An anonymous user";
+                  var action = msg.item.complete ? " checked off " : " unchecked ";
+
+                  ngNotify.set(user + " " + action + " " + items_copy[index].name + " " + " on the " + list.name + " shopping list.")
                   return;
                 }
               })
