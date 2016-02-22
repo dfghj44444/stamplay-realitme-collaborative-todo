@@ -24,9 +24,8 @@ app.controller("ListController",
           })
       }
 
-      //
       Pubnub.subscribe({
-          channel  :$stateParams.slug,
+          channel  : slug,
           message  : function(msg) {
             if(msg.item.new) {
               $scope.items.push(msg.item);
