@@ -1,13 +1,11 @@
-app.factory("List", ["$q", "$stamplay", function($q, $stamplay) {
+app.factory("Item", ["$q", "$stamplay", function($q, $stamplay) {
 
   return {
 
-    createList : function(name) {
+    add : function(name, list) {
       var deffered = $q.defer();
-      var slug = name.toLowerCase().split(" ").join("-");
-
-      $stamplay.Object("list")
-        .save({ slug : slug, name : name })
+      $stamplay.Object("item")
+        .save({ name : name, list : list, complete : false })
           .then(function(res) {
             deffered.resolve(res);
           }, function(err) {
@@ -16,32 +14,27 @@ app.factory("List", ["$q", "$stamplay", function($q, $stamplay) {
       return deffered.promise;
     },
 
-    checkName : function(name) {
+    complete : function(item) {
       var deffered = $q.defer();
-      var slug = name.toLowerCase().split(" ").join("-");
-
-      $stamplay.Object("list")
-        .get({ slug : slug })
+      $stamplay.Object("item")
+        .patch(item._id, { complete : !item.complete })
           .then(function(res) {
-            deffered.resolve({ data : res.data.length, slug : slug });
+            deffered.resolve(res);
           }, function(err) {
             deffered.reject(err.message)
           })
-
       return deffered.promise;
     },
 
-    getList : function(slug) {
+    getListItems : function(list) {
       var deffered = $q.defer();
-
-      $stamplay.Object("list")
-        .get({ slug : slug })
+      $stamplay.Object("item")
+        .get({ list : list, page: 1, per_page: 500 })
           .then(function(res) {
-            deffered.resolve(res.data[0]);
+            deffered.resolve(res.data);
           }, function(err) {
             deffered.reject(err.message)
           })
-
       return deffered.promise;
     }
 

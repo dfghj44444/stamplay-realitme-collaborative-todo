@@ -15,7 +15,16 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state("List", {
       url : "/list/:slug",
-      templateUrl : '../../views/list.html'
+      templateUrl : '../../views/list.html',
+      controller : "ListController",
+      resolve : {
+        list : function(List, $stateParams) {
+          return List.getList($stateParams.slug);
+        },
+        items : function(Item, $stateParams) {
+          return Item.getListItems($stateParams.slug);
+        }
+      }
     })
 
   $urlRouterProvider.otherwise("/");

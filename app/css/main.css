@@ -1,3 +1,7 @@
+body {
+  min-height: 100vh;
+}
+
 .account-form {
   padding: 20px;
   height: 50vh;
@@ -132,4 +136,85 @@ input {
 
 .is-success {
   background-color:#2ecc71 !important;
+}
+
+.notification.default {
+  color:#424242;
+  padding:10px;
+}
+
+.new-item {
+  border-radius:0;
+  margin:0;
+}
+
+.new-item:focus {
+  height:50px;
+  font-size: 1.25em;
+  background:#424242;
+  color:#f2f2f2
+}
+
+.item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.item {
+  box-shadow:0px 0px 12px 2px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  padding:20px;
+  display: flex;
+  align-items: center;
+  min-width: 300px;
+  width:30%;
+  margin: 6px 0;
+  color:#424242;
+  text-align: center;
+  font-size: 1.3rem;
+  transition: box-shadow 0.1s linear;
+}
+
+@media screen and (max-width:500px) {
+  .item {
+    width:100% !important;
+  }
+}
+
+.item:active {
+  box-shadow:0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: box-shadow 0.1s linear;
+}
+
+.item:hover {
+  opacity: 0.9;
+}
+
+.ion-android-checkbox-outline-blank, .ion-android-checkbox-outline {
+  font-size:2rem;
+  opacity: 0;
+  float:left;
+  display: none;
+}
+.ion-android-checkbox-outline.check-status {
+  color:#16a085;
+  opacity: 0.65;
+}
+.check-status {
+  display: inline;
+  opacity: 1;
+}
+
+.item-text {
+  flex:1;
+}
+.complete {
+  text-decoration: line-through;
+}
+
+.complete-item {
+  background-color:rgba(255, 255, 255, 0.65)
 }

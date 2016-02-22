@@ -1,1 +1,29 @@
-<h1>List</h1>
+<section class="hero">
+  <div class="hero-content">
+    <div class="container">
+      <h1 class="title">
+        <i class="ion-bag"></i> {{ list.name }}
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="hero">
+  <form ng-submit="add(name)">
+    <input type="text" class="input new-item" ng-model="name" placeholder="Enter a new item">
+  </form>
+</section>
+
+<section class="hero is-primary">
+  <div class="hero-content">
+    <div class="container">
+      <div class="item-container">
+        <div class="item" ng-repeat="item in items track by $index" ng-click="complete(item, $index); item.complete = !item.complete" ng-class="{ 'complete-item' : item.complete }">
+          <i class="ion-android-checkbox-outline-blank" ng-class="{ 'check-status' : !item.complete }"></i>
+          <i class="ion-android-checkbox-outline" ng-class="{ 'check-status' : item.complete }"></i>
+          <span class="item-text" ng-class="{ 'complete' : item.complete }">{{ item.name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
