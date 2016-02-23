@@ -19,4 +19,10 @@ app.run(function(Pubnub, atomicNotifyService) {
     publish_key : "PUBNUB PUBLISH KEY",
     subscribe_key : "PUBNUB SUBSCRIBE KEY"
   })
+
+  ngNotify.config({
+    duration: 3000,
+    type: 'info',
+    html: true
+  });
 })
