@@ -7,6 +7,8 @@
     <title>Shop With Me</title>
     <link rel="stylesheet" href="https://cdn.rawgit.com/jgthms/bulma/master/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/angular.ng-notify/0.7.2/ng-notify.min.css">
+    <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
     <!-- Notification Directive -->
@@ -27,12 +29,47 @@
     <section ui-view></section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
     <script src="https://drrjhlchpvi7e.cloudfront.net/libs/stamplay-js-sdk/2.0.1/stamplay.min.js"></script>
     <script src="https://cdn.rawgit.com/Stamplay/angular-stamplay/master/angular-stamplay.js"></script>
     <script src="https://cdn.pubnub.com/pubnub-3.9.2.min.js"></script>
     <script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/angular.ng-notify/0.7.2/ng-notify.min.js"></script>
     <script src="/js/modules/app.module.js"></script>
 
   </body>
 </html>
+
+
+<!DOCTYPE html>
+<html ng-app="shop-with-me">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Shop With Me</title>
+
+
+
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-left">
+          <a class="header-item" ui-sref="Home" ui-sref-active="active">
+            <i class="ion-bag"></i> &nbsp;Shop With Me
+          </a>
+        </div>
+        <div class="header-right flex" ng-hide="user">
+          <a class="header-item" ui-sref="Account({ tab : 'login' })" ui-sref-active="active">Login</a>
+          <a class="header-item" ui-sref="Account({ tab : 'signup' })" ui-sref-active="active">Signup</a>
+        </div>
+        <div class="header-right flex" ng-show="user" ng-controller="AccountController">
+          <a class="header-item" ng-bind="user.email"></a>
+          <a class="header-item" ng-click="logout()">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <section ui-view></section>
