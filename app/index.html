@@ -40,36 +40,3 @@
 
   </body>
 </html>
-
-
-<!DOCTYPE html>
-<html ng-app="shop-with-me">
-  <head>
-    <base href="/">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>Shop With Me</title>
-
-
-
-  </head>
-  <body>
-    <header class="header">
-      <div class="container">
-        <div class="header-left">
-          <a class="header-item" ui-sref="Home" ui-sref-active="active">
-            <i class="ion-bag"></i> &nbsp;Shop With Me
-          </a>
-        </div>
-        <div class="header-right flex" ng-hide="user">
-          <a class="header-item" ui-sref="Account({ tab : 'login' })" ui-sref-active="active">Login</a>
-          <a class="header-item" ui-sref="Account({ tab : 'signup' })" ui-sref-active="active">Signup</a>
-        </div>
-        <div class="header-right flex" ng-show="user" ng-controller="AccountController">
-          <a class="header-item" ng-bind="user.email"></a>
-          <a class="header-item" ng-click="logout()">Logout</a>
-        </div>
-      </div>
-    </header>
-
-    <section ui-view></section>
