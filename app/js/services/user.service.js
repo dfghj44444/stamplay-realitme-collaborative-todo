@@ -36,18 +36,6 @@ app.factory("User", ["$q", "$stamplay", function($q, $stamplay) {
           }
         )
       return deffered.promise;
-    },
-    logout : function() {
-      var deffered = $q.defer();
-      $stamplay.User.logout()
-        .then(
-          function(response) {
-            deffered.resolve(response);
-          }, function(error) {
-            deffered.reject(error);
-          }
-        )
-      return deffered.promise;
     }
   }
 }])
