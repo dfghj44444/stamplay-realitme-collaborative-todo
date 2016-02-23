@@ -4,6 +4,11 @@
       <h1 class="title">
         <i class="ion-bag"></i> {{ list.name }}
       </h1>
+
+      <form ng-submit="invite(email)">
+        <input type="text" class="input invite" ng-model="email" placeholder="Invite someone to collaborate with you. Enter their email here.">
+      </form>
+
     </div>
   </div>
 </section>

@@ -10,6 +10,7 @@ app.controller("HomeController",
   // Create a new list
   $scope.createList = function() {
 
+    // new
     if(loggedin.user === false) {
       return $scope.availability = { message : "Please login to create a shopping list." , status : 'unavailable' };
     }
@@ -76,5 +77,6 @@ app.controller("HomeController",
         $scope.invalidName = true;
       })
   }
+  10222168921
 
 }])

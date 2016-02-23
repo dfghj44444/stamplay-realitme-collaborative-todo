@@ -14,7 +14,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         }
     })
     .state("Account", {
-      // new param list
         url : '/account/:tab?list',
         templateUrl : "../../views/account.html",
         controller : "AccountController",
@@ -24,7 +23,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl : '../../views/list.html',
       controller : "ListController",
       resolve : {
-        // New
         loggedin : function(User) {
           return User.current();
         },
@@ -39,7 +37,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $urlRouterProvider.otherwise("/");
 
-  // $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 
 })
 

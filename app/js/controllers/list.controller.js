@@ -32,6 +32,15 @@ app.controller("ListController",
           })
       }
 
+      $scope.invite = function(invitee) {
+        List.inviteUser(invitee, loggedin.user.email, slug)
+          .then(function(response) {
+            ngNotify.set("You invited " + invitee + " to collaborate.")
+          }, function(err) {
+            ngNotify.set("Umm something's not right..")
+          })
+      }
+
       // New
       Pubnub.subscribe({
           channel  : slug,

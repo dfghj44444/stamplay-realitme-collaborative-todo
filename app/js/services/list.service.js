@@ -1,4 +1,4 @@
-app.factory("List", ["$q", "$stamplay", function($q, $stamplay) {
+app.factory("List", ["$http", "$q", "$stamplay", function($http, $q, $stamplay) {
 
   return {
 
@@ -43,7 +43,28 @@ app.factory("List", ["$q", "$stamplay", function($q, $stamplay) {
           })
 
       return deffered.promise;
-    }
+    },
+
+    inviteUser : function(invitee, current) {
+      var deffered = $q.defer();
+
+      var data = {
+        "to": invitee,
+        "from": current,
+        "fromname": current,
+        "subject": "You have been invited to shop with me!",
+        "body": "Collaborate with me in realtime on my shopping list at " + window.location.href
+      };
+
+      Stamplay.Webhook('invite')
+        .post(data)
+          .then(function(res) {
+            deffered.resolve(res);
+          }, function(err){
+            deffered.reject(err);
+          });
+          return deffered.promise;
+      }
 
   }
 

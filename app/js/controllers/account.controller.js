@@ -10,6 +10,7 @@ app.controller("AccountController",
     User.current()
       .then(function(response) {
           $rootScope.user = response.user;
+          // new
           if($location.search().list) {
             $state.go("List", { slug : $location.search().list });
           } else {
