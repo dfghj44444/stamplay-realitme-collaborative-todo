@@ -1,4 +1,4 @@
-var app = angular.module("shop-with-me", ["ui.router", "pubnub.angular.service", "ngStamplay"])
+var app = angular.module("shop-with-me", ["ui.router", "ngNotify", "pubnub.angular.service", "ngStamplay", "ngSanitize"])
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
