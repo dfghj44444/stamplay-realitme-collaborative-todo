@@ -1,5 +1,7 @@
 # Shop With Me
 
+![](https://raw.githubusercontent.com/isaiahgrey93/stamplay-pubnub/master/step_20.png)
+
 Shop With Me is a real-time collaborative shopping list built with PubNub.
 
 Pubnub is data stream network for developers to build realtime web applications.
