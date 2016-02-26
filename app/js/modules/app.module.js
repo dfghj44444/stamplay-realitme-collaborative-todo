@@ -17,7 +17,8 @@ app.run(function(Pubnub, ngNotify) {
   Stamplay.init("YOUR STAMPLAY APP ID")
   Pubnub.init({
     publish_key : "PUBNUB PUBLISH KEY",
-    subscribe_key : "PUBNUB SUBSCRIBE KEY"
+    subscribe_key : "PUBNUB SUBSCRIBE KEY",
+    ssl : (('https:' === window.location.protocol) ? true : false)
   })
 
   ngNotify.config({
