@@ -43,11 +43,12 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 app.run(function(Pubnub, User, $rootScope, ngNotify) {
 
-  Stamplay.init("shop-with-me")
+  Stamplay.init("shop-with-me");
 
   Pubnub.init({
     publish_key : "pub-c-3038b9d4-b26c-46f4-aac7-aefbd5dadc33",
-    subscribe_key : "sub-c-5deb1b3a-cac3-11e5-a316-0619f8945a4f"
+    subscribe_key : "sub-c-5deb1b3a-cac3-11e5-a316-0619f8945a4f",
+    ssl : (('https:' === window.location.protocol) ? true : false)
   })
 
   User.current()
